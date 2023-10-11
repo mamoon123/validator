@@ -4,6 +4,7 @@ import akirolab.service.validator.dtos.TokenValidationRequestDto;
 import akirolab.service.validator.util.algorithm.LuhnAlgorithm;
 import akirolab.service.validator.util.algorithm.TokenValidator;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8080")
 public class TokenValidatorController {
 
     private final TokenValidator tokenValidator = new LuhnAlgorithm();

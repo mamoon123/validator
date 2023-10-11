@@ -1,4 +1,5 @@
 package akirolab.service.validator.controller;
+
 import akirolab.service.validator.util.algorithm.TokenValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class TokenValidatorControllerTest {
 
     @Test
     public void testValidTokenFormatAndValidLuhn() throws Exception {
-        String requestBody = "{ \"token\": \"1234-5678-1234-5678\" }";
+        String requestBody = "{ \"token\": \"4111-1111-1111-1111\" }";
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/validate")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -40,10 +41,9 @@ public class TokenValidatorControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.isValid").value(true));
     }
-
     @Test
     public void testInvalidTokenFormat() throws Exception {
-        String requestBody = "{ \"token\": \"1234567812345678\" }";
+        String requestBody = "{ \"token\": \"1234-5678-1234-5678\" }"; // Correct the request body
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/validate")
                         .contentType(MediaType.APPLICATION_JSON)
